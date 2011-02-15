@@ -48,7 +48,7 @@
 
 // exit;
 
-require_once 'lib/swift_required.php';
+ require_once 'lib/swift_required.php';
  try {
 //Create a transport
 $transport = Swift_SmtpTransport::newInstance() 
@@ -64,19 +64,19 @@ $mailer=Swift_Mailer::newInstance($transport);
 //Create the message
 $message = Swift_Message::newInstance()
 
-  //Give the message a subject
+ //Give the message a subject
   ->setSubject('Elle Krievs, SWIFT Mailer 4.0 - test_02')
 
-  //Set the From address with an associative array
+ //Set the From address with an associative array
   ->setFrom(array('dailyTangents@gmail.com' => 'Elle Krievs'))
 
-  //Set the To addresses with an associative array
+ //Set the To addresses with an associative array
  // ->setTo(array('dailyTangents@gmail.com', 'other@domain.org' => 'A name'))
   ->setTo(array('lkrievs9766@mail.kvcc.edu','this-should-fail@test-domain.or',
    'another-bad-domain-name@badbadbad.edu'))
 
-    //Set the Reply-To addresses with an associative array
- // ->setReplyTo(array('dailyTangents@gmail.com', 'other@domain.org' => 'A name'))
+ //Set the Reply-To addresses with an associative array
+  // ->setReplyTo(array('dailyTangents@gmail.com', 'other@domain.org' => 'A name'))
   ->setReplyTo(array('dailyTangents@gmail.com'))
   
   //Give it a body
@@ -86,7 +86,7 @@ $message = Swift_Message::newInstance()
   ->addPart('<q>I really rock at PHP</q>', 'text/html')
 
   //Optionally add any attachments
-//  ->attach(Swift_Attachment::fromPath('my-document.pdf'))
+  //  ->attach(Swift_Attachment::fromPath('my-document.pdf'))
   ;
     // set header information
     $headers = $message->getHeaders();
@@ -112,6 +112,7 @@ $result=$mailer->send($message) ;
  } catch (Swift_RfcComplianceException $e)
 {
     print('Email address not valid:' . $e->getMessage());
+    trigger_error('Swift mailer error ' . $e,E_USER_NOTICE);
 }
  
 
