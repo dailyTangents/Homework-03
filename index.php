@@ -7,7 +7,7 @@
  * @category Anm293
  * Project 03 
  * @version  0.001
- * @link https://dailyTangents@github.com/dailyTangents/Project-Homework03.git
+ * @link https://github.com/dailyTangents/Homework-03.git
  */ 
  /*
   * @todo: Figure out the "No grammer constraints " in problem column
@@ -60,22 +60,21 @@ $transport = Swift_SmtpTransport::newInstance()
 ;
 $mailer=Swift_Mailer::newInstance($transport);
 
+  //Create the message
+  $message = Swift_Message::newInstance()
 
-//Create the message
-$message = Swift_Message::newInstance()
-
- //Give the message a subject
+  //Give the message a subject
   ->setSubject('Elle Krievs, SWIFT Mailer 4.0 - test_02')
 
- //Set the From address with an associative array
+  //Set the From address with an associative array
   ->setFrom(array('dailyTangents@gmail.com' => 'Elle Krievs'))
 
- //Set the To addresses with an associative array
- // ->setTo(array('dailyTangents@gmail.com', 'other@domain.org' => 'A name'))
+  //Set the To addresses with an associative array
+  // ->setTo(array('dailyTangents@gmail.com', 'other@domain.org' => 'A name'))
   ->setTo(array('lkrievs9766@mail.kvcc.edu','this-should-fail@test-domain.or',
    'another-bad-domain-name@badbadbad.edu'))
 
- //Set the Reply-To addresses with an associative array
+  //Set the Reply-To addresses with an associative array
   // ->setReplyTo(array('dailyTangents@gmail.com', 'other@domain.org' => 'A name'))
   ->setReplyTo(array('dailyTangents@gmail.com'))
   
@@ -107,14 +106,13 @@ $message = Swift_Message::newInstance()
   print_r($failures);
 }
  //  exit;
-//Send the message
+ //Send the message
+ 
 $result=$mailer->send($message) ;
  } catch (Swift_RfcComplianceException $e)
 {
     print('Email address not valid:' . $e->getMessage());
     trigger_error('Swift mailer error ' . $e,E_USER_NOTICE);
 }
- 
-
  
   echo '<hr /> All done<hr />' ;
